@@ -1,0 +1,24 @@
+{
+  "name": "cyber-challenge-horizon-studios-server",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">\r <img src=\"https://codeworks.blob.core.windows.net/public/assets/cyber-range/labs/horizon-studios/logo.png\" width=\"350\">\r </p>",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2 start index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeworksacademy/cyber-challenge-horizon-studios-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codeworksacademy/cyber-challenge-horizon-studios-server/issues"
+  },
+  "homepage": "https://github.com/codeworksacademy/cyber-challenge-horizon-studios-server#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mime": "^3.0.0"
+  }
+}
