@@ -8,47 +8,56 @@ Horizon Studios is an up and coming game development company. They recently laun
 
 ## Goals
 
-In this checkpoint students will demonstrate a working knowledge of techniques used by cyber attackers and defensive tools to mitigate several risks and flaws within Horizon Studios. Your team has been contracted to provide ongoing cyber security monitoring and incident response services to Horizon Studios as its platform grows. You'll also need to determine the how cyber attackers have already compromised the system and to what information has already been compromised. With these goals in mind You'll need to implement the list of requirements below to protect Horizon Studios from further attacks.
+In this checkpoint students will demonstrate a working knowledge of techniques used by cyber attackers and defensive tools to mitigate several risks and flaws within Horizon Studios. 
+
+#### Part 1 - Environment Staging 
+Your team has been contracted to provide ongoing cyber security monitoring and incident response services to Horizon Studios as its platform grows. With the threat of an already compromised system Horizon Studios has decided to have your team rebuild their Platform. Your team will be responsible to build out a Virtual Private Cloud and spin up two connected instances using Amazon Web Services (`AWS`). Once initialized you will need to install and configure a suite of tools designed to capture and protect Horizon Studios from various threats. 
+
+#### Part 2 - Pen-testing 
+After establishing this new environment for Horizon Studio Services your team has been tasked with Penetration Testing the now deprecated Horizon Studios system to determine the how cyber attackers compromised the system and to what information was likely accessed. Completion of this part will be evaluated in the CodeWorks Cyber Range.
 
 
-### Existing Architecture
+### Setup
 
-To help you get started Horzion Studios has provided the following diagram of services they use and how they are connected. You have been given a free scope of range probe or target any of these resources in your investigation. Horizon Studios has a firm non-negotiable tie to `AWS` and must therefore continue using this cloud service. 
+To help you get started Horizon Studios has provided the following diagram and Threat Model of services they use and how they are connected. You have been given a free scope of range probe or target any of these resources in your investigation.
 
----
 ***Service Map***
 
-![reference](https://codeworks.blob.core.windows.net/public/assets/img/projects/KeeprUML.png)
+![reference](service-model.png)
 
----
-
-### Business Rules and Functionality
-
-We want give users some credit for creating an excellent `keep` to do that you will want to set up a way to keep track of the number of times a keep has been viewed, and how many times it has been added to any vault (kept). (as a stretch goal, when it is removed this count should be updated to go down as well).
-
-Due to the privacy of our users, Vaults marked private may only be retrieved by the user who created the vault, there are a few places you will want to make a check on what vaults should be returned.
 
 ## Requirements
 
-- Configure Proper IAM for all team members must be implemented using AWS best practices
-  - Use root sparingly and with MFA, Administrator permissions OK
-- Create a VPC for all Horizon Studios EC2 Instances
+With these above goals in mind You'll need to implement this list of requirements to protect Horizon Studios.
+
+- Create a VPC for all Horizon Studios EC2 Instances use `10.0.0.0/24 CIDR Block`
+- Configure Proper IAM Groups for three types of team members and associate at least 1 user for each
+  - Use root sparingly and with MFA 
+  - Administrators
+  - EC2 Managers
 - Create a CIS compliant Windows Server 2019 DC EC2 Instance
   - Install MySQL Server here and create a database_schema
-    - Create a table called `accounts` with the following fields (`id, name, email, picture`)
-    - Ensure all data in this database is encrypted at rest and encrypted in transit
+    - Create a table called `accounts` in this database_schema with the following fields (`id, name, email, picture`)
+    - Ensure all data in this database is encrypted at rest
   - Ensure this EC2 instance is only accessible via RDP using a Key Pair
   - Install Sysmon to generate security-relevant system logs
 - Create an Ubuntu EC2 instance 
   - Install nodejs version 16 or greater
-  - Install and launch Web server --------------
-  - Add and configure NGINX to host a website
-    - Proxy port 3000 to port 80 in the NGINX configuration
+  - Use git clone to pull down this repo
+    - install `pm2` globally using `npm`
+    - run `npm i` to install server dependencies
+    - run `npm start` to start this server
+  - Install and configure NGINX to host the company website
+    - Proxy port `3000` to port `80` in the NGINX default configuration
+    - Look at the [ngnix](ngnix) config in this repo for an example
+    - Verify you can access the company website by going to your EC2 public ip address in your browser
+    - Be sure your security group in aws has allowed traffic on the http port
   - Install and configure Snort to monitor incoming connections
-    - Add a custom snort rule to alert invalid SSH attemps with the message `Ehhh, we don't talk about Bruto`
-- Use AWS Control Tower to monitor these two instances
-- Use Microsoft Threat Monitor to model this design and identify potential Problems.
-
+    - Add a custom snort rule to alert invalid SSH attempts with the message `[SSH_ATTACK] Deploying Shields`
+  - Create a SIEM/log aggregation system with either Splunk, CloudTrail, or Elastic Stack
+    - Send Snort logs to the provider of your choice
+    - Send Sysmon logs to the provider of your choice
+- Use AWS Control Tower to monitor your EC2 instances
 
 
 ## Legal Overview
