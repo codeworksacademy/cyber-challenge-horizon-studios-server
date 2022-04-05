@@ -15,7 +15,7 @@ const aboutPage = {
   </div>
   <div class="row px-lg-5 pb-5">
     <div class="container">
-      <div class="row">
+      <div class="row" v-if="employees">
         <employee-component :employee="employee" v-for="employee in employees" :key="employee.id" class="my-5" />
       </div>
     </div>
@@ -27,7 +27,7 @@ const aboutPage = {
   },
   computed: {
     employees() {
-      return this.$root.$data.employees
+      return this?.$root?.$data?.employees
     }
   }
 }

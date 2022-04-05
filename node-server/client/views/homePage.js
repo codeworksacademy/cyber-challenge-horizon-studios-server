@@ -52,7 +52,7 @@ const homePage = {
         </div>
       </div>
       <div class="col-12">
-        <div class="row">
+        <div class="row" v-if="products">
           <product-card v-for="p in products" :key="p.id" :product="p"/>
         </div>
       </div>
@@ -67,7 +67,7 @@ const homePage = {
   },
   computed: {
     products() {
-      return this.$root.$data.products
+      return this?.$root?.$data?.products
     }
   },
   methods: {}
