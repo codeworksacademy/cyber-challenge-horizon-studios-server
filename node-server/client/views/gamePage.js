@@ -43,7 +43,7 @@ const gamePage = {
                     Hovered by tree tops, and barks with horrifying grins,<br>
                     The haunted forest, where no one should dare go in,<br>
                     The trees talk in the most hoarse of tongues,<br>
-                    The spiked leafed trees, doesn’t welcome anyone,<br>
+                    The spiked leafed trees, doesn't welcome anyone,<br>
                   </p>
                 </div>
                 <div class="col-6">
