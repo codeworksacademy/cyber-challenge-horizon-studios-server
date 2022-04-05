@@ -20,6 +20,5 @@ const productCard = {
   `,
   props: {
     product: { type: Object, required: true }
-  },
-  data() { }
+  }
 }
