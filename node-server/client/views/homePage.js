@@ -6,7 +6,7 @@ const homePage = {
   <div class="row hero-container"></div>
 
   <div class="row bg-blue lighten-40 py-5 px-lg-5 d-flex align-items-center justify-content-center">
-    <div class="col-4">
+    <div class="col-lg-4 my-1 my-lg-0">
       <div class="p-5 bg-blue darken-40 rounded elevation-2 text-center">
         <i class="f-22 mdi mdi-star text-gold"></i>
         <i class="f-24 mdi mdi-star text-gold"></i>
@@ -17,7 +17,7 @@ const homePage = {
         <p><em>- PGP Reviews</em></p>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-lg-4 my-1 my-lg-0">
       <div class="p-5 bg-blue darken-40 rounded elevation-2 text-center">
         <i class="f-22 mdi mdi-star text-gold"></i>
         <i class="f-24 mdi mdi-star text-gold"></i>
@@ -29,7 +29,7 @@ const homePage = {
         <h5 class="mb-0 text-gold text-uppercase">Gamers Choice Award</h5>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-lg-4 my-1 my-lg-0">
       <div class="p-5 bg-blue darken-40 rounded elevation-2 text-center">
         <i class="f-22 mdi mdi-star text-gold"></i>
         <i class="f-24 mdi mdi-star text-gold"></i>
