@@ -41,7 +41,7 @@ port = 3306 to 3308
 bind address = 127.0.0.1 to 0.0.0.0
 ```
 
-**Setup nginx proxy:**
+**Setup nginx MySQL proxy:**
 
 ```terminal
 > sudo nano /etc/nginx/nginx.conf
@@ -59,6 +59,42 @@ stream {
     listen 3306;
     proxy_pass db;
   }
+}
+```
+
+**Setup nginx WebServer proxy:**
+
+Configure port 80 -> 3000 Web Server
+
+```nginx
+upstream backend {
+  server localhost:3000;
+}
+
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /home/ubuntu/cyber-challenge-horizon-studios-server/client;
+
+        index index.html index.htm index.nginx-debian.html;
+        
+        server_name horizonstudios.com;
+
+        location / {
+                try_files $uri @backend;
+        }
+
+        location @backend {
+                proxy_pass http://backend;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection 'upgrade';
+                proxy_set_header Host $host;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_cache_bypass $http_upgrade;
+                proxy_set_header Connection "upgrade";
+        }
 }
 ```
 
