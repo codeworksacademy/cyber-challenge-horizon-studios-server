@@ -42,7 +42,7 @@ const homePage = {
     </div>
   </div>
 
-  <div class="row py-5 px-lg-5 bg-white">
+  <div class="row py-5 px-lg-5 bg-light">
     <div class="col-12">
       <div class="container">
       <div class="row my-5">
