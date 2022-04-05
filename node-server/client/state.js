@@ -1,0 +1,4 @@
+const appstate = {
+  people: [],
+  products: []
+}
