@@ -21,10 +21,9 @@ const aboutPage = {
     </div>
   </div>
 </div>`,
-  async data() {
-    return {
-      // eslint-disable-next-line no-undef
-      employees: appstate.employees
+  computed: {
+    employees() {
+      return this?.$root?.$data?.employees
     }
   }
 }
