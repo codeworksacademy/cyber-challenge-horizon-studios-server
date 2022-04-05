@@ -113,22 +113,18 @@
       el: "#app",
       router: router,
       data() {
-
-        async function init(root) {
-          // @ts-ignore
-          // eslint-disable-next-line no-undef
-          root.$data.products = await $resource.get('api/products')
-          root.$data.employees = await $resource.get('employees')
-        }
-
-        setTimeout(() => {
-          init(this.$root)
-        }, 500)
-
         return {
           authstatus: false,
           ...appstate
         };
+      },
+      mounted() {
+        try {
+          this.$root.$data.products = await $resource.get('api/products') || []
+          this.$root.$data.employees = await $resource.get('employees') || []
+        } catch (e) {
+          console.error('[FETCH_ERROR]', e)
+        }
       },
       methods: {
         setAuthStatus(val) {
