@@ -1,1 +1,54 @@
-/* BASIC STYLES HERE */
+body {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.text-gold{
+  color: antiquewhite;
+}
+
+h1.text-gold,
+h2.text-gold,
+h3.text-gold,
+h4.text-gold,
+h5.text-gold{
+  line-height: 1.75;
+  color: #fffece;
+}
+
+.hero-container {
+  background: url(https://github.com/codeworksacademy/cyber-challenge-horizon-studios-server/raw/main/client/assets/img/screenshot.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  display: grid;
+  place-content: center start;
+  position: relative;
+  letter-spacing: .135rem;
+  line-height: 1.75rem;
+  filter: hue-rotate(-45deg);
+}
+
+.inverted{
+  filter: brightness(100) drop-shadow(0 0 3px rgb(0, 221, 255));
+}
+
+.social-link {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  border-radius: 50%;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+
+.social-link:hover,
+.social-link:focus {
+  background: #ddd;
+  text-decoration: none;
+  color: #555;
+}

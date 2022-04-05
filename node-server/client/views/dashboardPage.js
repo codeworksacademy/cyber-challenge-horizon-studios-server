@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-const physicianPortalPage = {
+const dashboardPage = {
   template: `
 <div class="container py-5">
   <div class="row py-5">

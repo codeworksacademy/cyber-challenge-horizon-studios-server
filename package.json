@@ -19,6 +19,7 @@
   "homepage": "https://github.com/codeworksacademy/cyber-challenge-horizon-studios-server#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "mime": "^3.0.0"
+    "mime": "^3.0.0",
+    "mysql": "^2.18.1"
   }
 }

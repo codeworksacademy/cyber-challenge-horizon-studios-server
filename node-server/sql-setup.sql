@@ -3,10 +3,11 @@ CREATE TABLE IF NOT EXISTS accounts(
   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
   name varchar(255) COMMENT 'User Name',
-  email varchar(255) COMMENT 'User Email',
+  email varchar(255) NOT NULL UNIQUE COMMENT 'User Email',
   picture varchar(255) COMMENT 'User Picture'
 ) default charset utf8 COMMENT '';
 
+ALTER TABLE accounts MODIFY COLUMN email VARCHAR(255) NOT NULL UNIQUE;
 ALTER TABLE accounts ADD COLUMN password VARCHAR(255) NOT NULL;
 ALTER TABLE accounts ADD COLUMN title VARCHAR(255);
 ALTER TABLE accounts ADD COLUMN employee TINYINT;

@@ -5,9 +5,9 @@ const loginPage = {
     <div class="col-lg-10 col-xl-6 m-auto">
       <div class="p-3 bg-white rounded elevation-2">
       <form @submit.prevent="submitForm" class="border rounded">
-        <div class="bg-dark rounded-top p-2 text-center">
+        <div class="bg-blue darken-30 rounded-top p-2 text-center">
           <i class="mdi mdi-folder-account f-18 mr-2"></i>
-          <b>Restricted Access - Physicians Only</b>
+          <b>Management Portal</b>
         </div>
         <div class="p-3">
           <fieldset>
@@ -18,9 +18,6 @@ const loginPage = {
             <div class="form-group">
               <label for="password">Password</label>
               <input type="password" class="form-control" id="password" v-model="user.password" minlength="6" maxlength="12" required>
-            </div>
-            <div class="pb-4">
-              <span>Patients please use the <router-link class="text-primary" to="/patient-portal">patient portal</router-link></span>
             </div>
             <div>
               <button type="submit" class="btn btn-dark">Login</button>

@@ -6,8 +6,8 @@ export class AccountController extends BaseController {
   constructor() {
     super('account')
     this.router
-      .get('', this.login)
-      .post('', this.create)
+      .post('', this.login)
+      .post('/create', this.create)
   }
 
   /**
@@ -18,12 +18,12 @@ export class AccountController extends BaseController {
    */
   async login(req, res, next) {
     try {
-      const account = await execute(`SELECT * FROM accounts WHERE email = ${req.body.email} AND password = ${req.body.password} LIMIT 1;`)
-      if (!account) {
+      const account = await execute(`SELECT * FROM accounts WHERE email = '${req.body.email}' AND password = '${req.body.password}' LIMIT 1;`)
+      if (!account.length) {
         throw new UnAuthorized('Invalid Username or Password')
       }
-      delete account.password
-      return res.send(account)
+      delete account[0].password
+      return res.send(account[0])
     } catch (error) {
       next(error)
     }

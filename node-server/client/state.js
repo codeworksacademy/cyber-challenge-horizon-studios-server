@@ -1,4 +1,6 @@
+/* eslint-disable no-undef */
+// @ts-ignore
 const appstate = {
-  people: [],
+  employees: [],
   products: []
 }

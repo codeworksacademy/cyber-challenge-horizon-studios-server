@@ -32,10 +32,11 @@ body {
   display: block;
   position: absolute;
   bottom: 0;
+  filter: hue-rotate(-45deg);
 }
 
 .parallax__cover {
-  background: #1a112d;
+  background: #07172a;
   display: block;
   position: absolute;
   top: 100%;
