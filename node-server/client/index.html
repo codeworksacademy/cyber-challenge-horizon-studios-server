@@ -118,7 +118,7 @@
           ...appstate
         };
       },
-      mounted() {
+      async mounted() {
         try {
           this.$root.$data.products = await $resource.get('api/products') || []
           this.$root.$data.employees = await $resource.get('employees') || []
@@ -131,7 +131,7 @@
           console.log("Setting authstatus through event to: ", val);
           this.authstatus = val;
         }
-      },
+      }
     });
   </script>
 
