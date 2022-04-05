@@ -62,13 +62,9 @@ const homePage = {
 
 </div>
       `,
-  data() {
-    return {}
-  },
   computed: {
     products() {
       return this?.$root?.$data?.products
     }
-  },
-  methods: {}
+  }
 }
