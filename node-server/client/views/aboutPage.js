@@ -23,11 +23,8 @@ const aboutPage = {
 </div>`,
   async data() {
     return {
-    }
-  },
-  computed: {
-    employees() {
-      return this?.$root?.$data?.employees
+      // eslint-disable-next-line no-undef
+      employees: appstate.employees
     }
   }
 }
