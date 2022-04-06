@@ -1,6 +1,6 @@
 const mysql = require('mysql2')
 const { logger } = require('./server/utils/Logger.js')
-const ConnectionString = process.env.CONNECTION_STRING || 'mysql://web_admin:batman@ec2-18-237-48-233.us-west-2.compute.amazonaws.com/horizon_studios'
+const ConnectionString = process.env.CONNECTION_STRING
 function connect() {
   const connection = mysql.createConnection(ConnectionString)
   connection.on('error', (err) => {
