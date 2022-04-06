@@ -11,7 +11,7 @@ const messageBoard = {
                 <img :src="employee.picture" alt="employee photo" class="employee-photo shadow">
                 <div class="ml-3">
                   <span class="user">{{employee.name}}</span>
-                  <div class="message"><small>🔑 {{employee.id}}<small></div>
+                  <div class="message"><small>🔑 {{employee.title}}<small></div>
                 </div>
               </div>
             </li>
@@ -32,7 +32,7 @@ const messageBoard = {
                   <small class="text-muted">{{message.name}} - {{message.mins}} min ago</small>
                 </div>
               </div>
-              <div class="">
+              <div style="word-break: break-all">
                 {{message.body}}
               </div>
             </div>
@@ -77,12 +77,12 @@ const messageBoard = {
       ],
       '5pef7a0v354kq05p': [
         createMessage('https://youtu.be/8FkiOfEgyvM', 80, users.jessie),
-        createMessage('https://www.reddit.com/r/webdev/comments/pyjzho/dns_record_types', 60, users.jessie),
+        createMessage('https://tinyurl.com/2p9y2w8z', 60, users.jessie),
         createMessage('https://github.com/Anteste/WebMap', 60, users.jessie)
       ],
       dwq3nfn0sao97yei: [
         createMessage('Can you look over these proofs... I feel like something is missing', 63, users.jo),
-        createMessage('https://www.figma.com/file/YfxDgdrescYyInvl5KBwT8/CodeWorks-Design-Requirements?node-id=2840%3A2775', 62, users.jo)
+        createMessage('https://tinyurl.com/2p95h4n7', 62, users.jo)
       ],
       he4hux8jt5lu9qpn: [
         createMessage('Did you ever get logged into the server?', 80, users.phillip),
