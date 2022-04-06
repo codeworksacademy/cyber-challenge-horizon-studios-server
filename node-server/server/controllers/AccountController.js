@@ -1,13 +1,33 @@
 import { execute } from '../../db.js'
+import { WeakSessionStore } from '../services/sessions.js'
 import BaseController from '../utils/BaseController'
-import { UnAuthorized } from '../utils/Errors.js'
+import { BadRequest, UnAuthorized } from '../utils/Errors.js'
+
+const sessions = new WeakSessionStore()
 
 export class AccountController extends BaseController {
   constructor() {
     super('account')
     this.router
+      .get('/auth', this.getUserFromSessionKey)
       .post('', this.login)
       .post('/create', this.create)
+  }
+
+  getUserFromSessionKey(req, res, next) {
+    try {
+      const sessionId = req.query.sessionid
+      if (!sessionId) {
+        throw new BadRequest('Invalid SessionId provided')
+      }
+      const session = sessions.checkSessionKey(sessionId)
+      if (!session) {
+        throw new UnAuthorized('Invalid session or expired please login to continue')
+      }
+      res.send(session.user)
+    } catch (e) {
+      next(e)
+    }
   }
 
   /**
@@ -23,6 +43,8 @@ export class AccountController extends BaseController {
         throw new UnAuthorized('Invalid Username or Password')
       }
       delete account[0].password
+      const session = sessions.addSession(account[0])
+      res.cookie('authsession', session.key, { maxAge: session.expires, httpOnly: true })
       return res.send(account[0])
     } catch (error) {
       next(error)

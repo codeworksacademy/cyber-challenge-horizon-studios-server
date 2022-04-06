@@ -48,10 +48,10 @@ const loginPage = {
         this.error = ''
         // @ts-ignore
         // eslint-disable-next-line no-undef
-        const res = await $resource.post('/physician-portal/login', this.user)
+        const res = await $resource.post('/account', this.user)
         // eslint-disable-next-line no-undef
         localStorage.setItem('session', JSON.stringify(res))
-        this.$router.push('/physician-portal')
+        this.$router.push('/dashboard')
       } catch (res) {
         this.error = res?.body?.error?.message
       }
