@@ -32,7 +32,7 @@ const messageBoard = {
                   <small class="text-muted">{{message.name}} - {{message.mins}} min ago</small>
                 </div>
               </div>
-              <div style="word-break: break-all">
+              <div>
                 {{message.body}}
               </div>
             </div>
