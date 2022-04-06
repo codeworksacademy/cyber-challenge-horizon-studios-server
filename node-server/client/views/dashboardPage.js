@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 const dashboardPage = {
-  template: `
+  template: /* html */`
 <div class="container py-5">
   <div class="row py-5">
     <div class="col-lg-10 col-xl-6 m-auto">
@@ -11,6 +11,14 @@ const dashboardPage = {
             <b>Welcome - {{user.name}} {{user.title}}</b>
           </div>
           <div class="p-3">
+            <div v-if="!user.employee && user.compromised">
+              <p class="bg-blue darken-40 p-3 text-center">
+                <span class="text-green lighten-30">
+                  <i class="mdi mdi-flag f-18 mr-2"></i>
+                  <b>{{atob(user.compromised)}}</b>
+                </span>
+              </p>
+            </div>
             <div v-if="user.flag">
               <p>
                 Congrats on making it this far here is a flag for your accomplishments...

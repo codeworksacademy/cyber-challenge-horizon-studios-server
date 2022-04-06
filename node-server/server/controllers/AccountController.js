@@ -43,6 +43,9 @@ export class AccountController extends BaseController {
         throw new UnAuthorized('Invalid Username or Password')
       }
       delete account[0].password
+      if (!account[0].employee) {
+        account[0].compromised = 'Q1cte0FDQ09VTlQtQ1JFQVRJT04tQ09NUFJPTUlTRUR9'
+      }
       const session = sessions.addSession(account[0])
       account[0].key = session.key
       res.cookie('authsession', session.key, { maxAge: session.expires, httpOnly: true })
@@ -63,8 +66,8 @@ export class AccountController extends BaseController {
       const account = req.body
       const id = `a${Math.floor(Math.random() * 999999)}b${Math.floor(Math.random() * 999999)}`
       await execute(`
-        INSERT INTO accounts(id, email, name, password, picture)
-        VALUES("${id}","${req.body.email}", "${req.body.name}", "${req.body.password}", "https://codeworks.blob.core.windows.net/public/assets/img/anonymous.jpg");
+        INSERT INTO accounts(id, email, name, password, picture, title)
+        VALUES("${id}","${req.body.email}", "${req.body.name}", "${req.body.password}", "https://codeworks.blob.core.windows.net/public/assets/img/anonymous.jpg", "Haxor");
       `)
       delete account.password
       const session = sessions.addSession(account)
