@@ -64,6 +64,10 @@ stream {
 
 **Setup nginx WebServer proxy:**
 
+```terminal
+> sudo nano /etc/nginx/sites-enabled/default
+```
+
 Configure port 80 -> 3000 Web Server
 
 ```nginx
