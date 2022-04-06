@@ -21,9 +21,6 @@ const loginPage = {
             </div>
             <div>
               <button type="submit" class="btn btn-dark">Login</button>
-              <transition name="fade">
-                <div class="alert alert-danger my-2" v-if="error">{{error}}</div>
-              </transition>
             </div>
           </fieldset>
         </div>
@@ -45,15 +42,24 @@ const loginPage = {
   methods: {
     async submitForm() {
       try {
-        this.error = ''
         // @ts-ignore
         // eslint-disable-next-line no-undef
         const res = await $resource.post('/account', this.user)
         // eslint-disable-next-line no-undef
         localStorage.setItem('session', JSON.stringify(res))
         this.$router.push('/dashboard')
-      } catch (res) {
-        this.error = res?.body?.error?.message
+      } catch (err) {
+        // @ts-ignore
+        // eslint-disable-next-line no-undef
+        Swal.fire({
+          title: err.message,
+          icon: 'warning',
+          position: 'top-end',
+          timer: 3000,
+          timerProgressBar: true,
+          toast: true,
+          showConfirmButton: false
+        })
       }
     }
   }
