@@ -33,10 +33,8 @@ const loginPage = {
   data() {
     return {
       user: {},
-      error: ''
+      showPassword: false
     }
-  },
-  computed: {
   },
   mounted() { },
   methods: {

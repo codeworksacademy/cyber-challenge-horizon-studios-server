@@ -17,7 +17,7 @@ export class EmployeesController extends BaseController {
   async getAll(req, res, next) {
     try {
       const employees = await execute(`
-      SELECT * FROM accounts WHERE employee = 1;
+      SELECT id, name, email, title, picture FROM accounts WHERE employee = 1;
       `)
       employees.forEach(e => {
         delete e.password

@@ -44,6 +44,7 @@ export class AccountController extends BaseController {
       }
       delete account[0].password
       const session = sessions.addSession(account[0])
+      account[0].key = session.key
       res.cookie('authsession', session.key, { maxAge: session.expires, httpOnly: true })
       return res.send(account[0])
     } catch (error) {

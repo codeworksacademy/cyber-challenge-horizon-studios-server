@@ -1,0 +1,29 @@
+.employee-photo {
+  height: 45px;
+  width: 45px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.message-content {
+  max-width: min(55ch, 80%);
+  background: aliceblue;
+  padding: 1rem;
+  border-radius: 5px;
+  font-weight: 500;
+  font-family: -apple-system, 'Segoe UI';
+}
+
+.other > .message-content {
+  background-color: #f6fff0;
+}
+
+.other {
+  justify-content: end;
+  display: flex;
+}
+
+.other>.message-content {
+  justify-content: end;
+  text-align: right;
+}

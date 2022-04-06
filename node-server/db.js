@@ -1,19 +1,29 @@
 const mysql = require('mysql2')
 const { logger } = require('./server/utils/Logger.js')
 const ConnectionString = process.env.CONNECTION_STRING
+
+let connected = false
 function connect() {
   const connection = mysql.createConnection(ConnectionString)
-  connection.on('error', (err) => {
+  connected = true
+  connection.once('error', (err) => {
     logger.error('[MYSQL_CONNECTION_ERROR]', err.message)
   })
   setTimeout(() => {
-    try {
-      connection.end()
-    } catch (error) {
-      logger.error('[ERROR_CLOSING_DB_CONNECTION]', error)
-    }
+    closeConnection(connection)
   }, 20000)
   return connection
+}
+
+function closeConnection(connection) {
+  try {
+    if (connected) {
+      connection.end()
+      connected = false
+    }
+  } catch (error) {
+    logger.error('[ERROR_CLOSING_DB_CONNECTION]', error)
+  }
 }
 
 async function execute(query) {
@@ -22,9 +32,8 @@ async function execute(query) {
     if (!connection) {
       return reject(new Error('Not Connection to DB'))
     }
-    connection.query(query, (err, results, fields) => {
+    connection.execute(query, (err, results, fields) => {
       try {
-        connection.end()
         if (err) {
           return reject(err)
         }
@@ -32,6 +41,8 @@ async function execute(query) {
       } catch (error) {
         logger.error('[ERROR_IN_DB_EXECUTION]', { query }, { error })
         reject(error)
+      } finally {
+        closeConnection(connection)
       }
     })
   })

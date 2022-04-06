@@ -5,7 +5,7 @@ export class WeakSessionStore {
   addSession(user) {
     const sessionKey = md5(`${user.id}`)
     const session = this.sessions[sessionKey] = {
-      expires: Date.now() + 900000,
+      expires: Date.now() + 9000000,
       user: user
     }
     return { key: sessionKey, expires: session.expires }
