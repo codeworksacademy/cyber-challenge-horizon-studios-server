@@ -4,7 +4,7 @@
 **Install MySQL server:**
 
 ```terminal
-> sudo apt get install mysql
+> sudo apt get install mysql-server
 ```
 
 **Configure MySQL server:**
