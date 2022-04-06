@@ -1,6 +1,6 @@
 const messageBoard = {
   template: `
-<div class="container-fluid" v-if="user">
+<div class="container-fluid" v-if="user && user.employee">
   <div class="media bg-white rounded">
     <div class="media-left d-none d-md-block col-md-3 p-0">
       <div class="messages-list">
@@ -32,7 +32,7 @@ const messageBoard = {
                   <small class="text-muted">{{message.name}} - {{message.mins}} min ago</small>
                 </div>
               </div>
-              <div>
+              <div >
                 {{message.body}}
               </div>
             </div>

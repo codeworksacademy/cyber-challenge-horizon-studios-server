@@ -19,9 +19,6 @@ export class EmployeesController extends BaseController {
       const employees = await execute(`
       SELECT id, name, email, title, picture FROM accounts WHERE employee = 1;
       `)
-      employees.forEach(e => {
-        delete e.password
-      })
       return res.send(employees)
     } catch (error) {
       next(error)
