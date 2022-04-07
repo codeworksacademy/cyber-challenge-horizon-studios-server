@@ -10,6 +10,7 @@ export class AccountController extends BaseController {
     super('account')
     this.router
       .get('/auth', this.getUserFromSessionKey)
+      .get('/messages', this.getMessages)
       .post('', this.login)
       .post('/create', this.create)
   }
@@ -74,6 +75,27 @@ export class AccountController extends BaseController {
       account.key = session.key
       res.cookie('authsession', session.key, { maxAge: session.expires, httpOnly: true })
       res.send(account)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getMessages(req, res, next) {
+    try {
+      const sessionId = req.query.sessionid
+      if (!sessionId) {
+        throw new BadRequest('Invalid SessionId provided')
+      }
+      const session = sessions.checkSessionKey(sessionId)
+      if (!session) {
+        throw new UnAuthorized('Invalid session or expired please login to continue')
+      }
+      const messages = await execute(`
+        SELECT m.*, a.name, a.picture
+        FROM messages m JOIN accounts a ON a.id = m.senderId
+        WHERE m.senderId = '${session.user.id}' OR m.toId = '${session.user.id}' LIMIT 100;
+      `)
+      res.send(messages)
     } catch (error) {
       next(error)
     }
