@@ -26,7 +26,7 @@ const dashboardPage = {
               <p class="bg-blue darken-40 p-3 text-center">
                 <span class="text-green lighten-30">
                   <i class="mdi mdi-flag f-18 mr-2"></i>
-                  <b>{{user.flag}}</b>
+                  <b>{{atob(user.flag)}}</b>
                 </span>
               </p>
             </div>

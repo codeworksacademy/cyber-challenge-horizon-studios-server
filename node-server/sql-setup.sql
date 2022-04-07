@@ -64,7 +64,8 @@ INSERT INTO
     password,
     picture,
     employee,
-    title
+    title,
+    flag
   )
 VALUES(
     "5pef7a0v354kq05p",
@@ -73,7 +74,8 @@ VALUES(
     "chocolate",
     "https://minimaltoolkit.com/images/randomdata/female/7.jpg",
     1,
-    "Marketing Lead"
+    "Marketing Lead",
+    "Q1cte0hUVFAtUE9TVC1CUlVURX0="
   );
 INSERT INTO
   accounts(
@@ -83,7 +85,8 @@ INSERT INTO
     password,
     picture,
     employee,
-    title
+    title,
+    flag
   )
 VALUES(
     "54maaw7jawifxh2g",
@@ -92,7 +95,8 @@ VALUES(
     "k;tE2{Tkk8P5M+7@",
     "https://minimaltoolkit.com/images/randomdata/male/3.jpg",
     1,
-    "Game Developer"
+    "Game Developer",
+    "Q1ctKE5JQ0UtSk9CfQ=="
   );
 INSERT INTO
   accounts(
@@ -253,6 +257,14 @@ VALUES(
     "he4hux8jt5lu9qpn",
     "5pef7a0v354kq05p",
     "Nevermind it looks like it is working"
+  );
+
+INSERT INTO
+  messages(toId, senderId, body)
+VALUES(
+    "dwq3nfn0sao97yei",
+    "5pef7a0v354kq05p",
+    "I talked to Phil about that feature yesterday... Apparently the account/create feature is already live but there is no way for users to use it yet since they are waiting on you for the UI"
   );
 
 SELECT m.*, a.name, a.picture FROM messages m JOIN accounts a ON a.id = m.senderId LIMIT 100;
