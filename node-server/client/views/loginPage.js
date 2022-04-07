@@ -17,7 +17,7 @@ const loginPage = {
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" v-model="user.password" minlength="6" maxlength="12" required>
+              <input type="password" class="form-control" id="password" v-model="user.password" minlength="6" maxlength="20" required>
             </div>
             <div>
               <button type="submit" class="btn btn-dark">Login</button>
