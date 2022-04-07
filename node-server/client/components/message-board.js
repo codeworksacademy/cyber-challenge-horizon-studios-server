@@ -1,7 +1,7 @@
 const messageBoard = {
   template: `
 <div class="container-fluid" v-if="user && user.employee">
-  <div class="media bg-white rounded">
+  <div class="media rounded h-100">
     <div class="media-left d-none d-md-block col-md-3 p-0">
       <div class="messages-list">
         <div class="panel panel-default" tabindex="1">
@@ -19,7 +19,7 @@ const messageBoard = {
         </div>
       </div>
     </div>
-    <div class="w-100 bg-white p-3 scrollable-y show-scroll" style="max-height:405px" v-if="messages">
+    <div class="w-100  h-100 bg-white p-3 scrollable-y show-scroll" v-if="messages">
       <div class="w-100 my-4" v-for="message in messages" :key="message.id" :class="message.senderId == user.id ? 'self':'other'">
         <div class="message-content elevation-2 d-flex">
           <div :class="message.senderId == user.id ? '':'order-2 '">
@@ -29,7 +29,7 @@ const messageBoard = {
             <div class="">
               <div class="">
                 <div class="">
-                  <small class="text-muted">{{message.name}} - {{message.mins}} min ago</small>
+                  <small class="text-muted">{{message.name}} - <span>{{format(message.createdAt)}}</span></small>
                 </div>
               </div>
               <div >
@@ -64,7 +64,7 @@ const messageBoard = {
   },
   computed: {
     employees() {
-      return this.$root.$data.employees.filter(e => e.employee.id === this.user.id)
+      return this.$root.$data.employees.filter(e => e.id !== this.user.id)
     },
     messages() {
       return this.allMessages.filter(m => m.toId === this.active || m.senderId === this.active)
@@ -73,6 +73,11 @@ const messageBoard = {
   methods: {
     setActive(employee) {
       this.active = employee.id
+    },
+    format(d) {
+      // @ts-ignore
+      // eslint-disable-next-line no-undef
+      return timeago().format(d)
     }
   }
 }
