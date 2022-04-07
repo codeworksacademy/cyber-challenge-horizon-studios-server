@@ -11,7 +11,7 @@ function connect() {
   })
   setTimeout(() => {
     closeConnection(connection)
-  }, 20000)
+  }, 8000)
   return connection
 }
 
@@ -35,9 +35,9 @@ async function execute(query) {
     connection.execute(query, (err, results, fields) => {
       try {
         if (err) {
-          return reject(err)
+          throw err
         }
-        return resolve(results)
+        resolve(results)
       } catch (error) {
         logger.error('[ERROR_IN_DB_EXECUTION]', { query }, { error })
         reject(error)
